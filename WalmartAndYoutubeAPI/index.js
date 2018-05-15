@@ -2,17 +2,10 @@
 
 const youtube_search_url = 'https://www.googleapis.com/youtube/v3/search';
 
-//search for ipod
-
-//http://api.walmartlabs.com/v1/search?apiKey={apiKey}&lsPublisherId={Your LinkShare Publisher Id}&query=ipod
-
-//category list - https://api.walmartlabs.com/v1/taxonomy?apiKey=cwd2qzamfg6f523deuwhuxec&format=json
-
-//video games - "categoryId": "2636",
-
 const search_url = 'https://api.walmartlabs.com/v1/search';
+let walmartData;
 
-//oww1hu2f71dd0rs83ba669i5
+
 function getDataFromApi(searchTerm, callback){
   //console.log('searching: ' +searchTerm);
   const query = {
@@ -29,21 +22,21 @@ function getDataFromApi(searchTerm, callback){
 
  // example https://giphy.com/gifs/mrw-boy-51Uiuy5QBZNkoF3b2Z
 function renderResults(results){
-  console.log('RESULTS'+results);
+  //console.log('RESULTS'+results);
   return `<div class="result-block">
-    <a href=${results.productUrl}>
-      <p class="itemName">${results.name}</p>
-        <img class="thumbnail" src='${results.mediumImage}'>
-    </a>
+      <input type="button" class="clickable itemNameButton" value="${results.name}">
+      <div class = "image">
+        <img class="thumbnail clickable" src='${results.mediumImage}'>
+      </div>
       <p>$${results.salePrice}</p>
   </div>
-   `;
+   `;// line 26 <a href=${results.productUrl}>   line 29 </a>
 }
 
 function displaySearchData(data){
   //console.log(data);
   const results = data.items.map((item,index) => renderResults(item));
-  
+  console.log("data is"+walmartData);
   $('.js-search-results-WALMART').html(results);
 }
 
@@ -53,9 +46,9 @@ function watchSubmit() {
     event.preventDefault();
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
-    
+    walmartData = query;
     //Clears input on submit
-    queryTarget.val("");
+    //queryTarget.val("");
     getDataFromApi(query,
     displaySearchData);
   });
@@ -66,11 +59,11 @@ $(watchSubmit);
 
 
 function getDataFromApiYOUTUBE(searchTerm, callback){
-  console.log(searchTerm);
+  //console.log(searchTerm);
   const query = {
     part: 'snippet',
     key: 'AIzaSyCn1d4mvDhmpTDGTUQewmXwbox46HljqvE',
-    q: `${searchTerm} Review`   ,
+    q: `${searchTerm}`   ,
     'maxResults': 6
     
   };
@@ -79,7 +72,7 @@ function getDataFromApiYOUTUBE(searchTerm, callback){
 }
 
 function renderResultsYOUTUBE(results){
-  console.log(results);
+  //console.log(results);
   //console.log(results.snippet.title);
   return `
   <div class="result-block">
@@ -107,7 +100,9 @@ function watchSubmitYOUTUBE() {
   {
     event.preventDefault();
     const queryTarget = $(event.currentTarget).find('.js-query');
+    console.log('querytarget is' +queryTarget);
     const query = queryTarget.val();
+    console.log('query is' +query);
     //Clears input on submit
     queryTarget.val("");
     getDataFromApiYOUTUBE(query,
@@ -118,64 +113,43 @@ function watchSubmitYOUTUBE() {
 function watchClick(){
   $('#quickSearch1').click(event =>
   {
-    // event.preventDefault();
-    // const queryTarget = $(event.currentTarget).find('.quickSearch');
-    // console.log(queryTarget);
-    // const query = queryTarget.innerHTML;
-    console.log('clicked');
+   
 
     var element = document.getElementById("quickSearch1").innerHTML;//$('.quickSearch').val;
-    //Clears input on submit
-    console.log('clicked on '+element);
-    //queryTarget.val("");
+    walmartData = element;
     getDataFromApi(element,displaySearchData);
     getDataFromApiYOUTUBE(element,
     displayYoutubeSearchData);
   });
   $('#quickSearch2').click(event =>
   {
-    // event.preventDefault();
-    // const queryTarget = $(event.currentTarget).find('.quickSearch');
-    // console.log(queryTarget);
-    // const query = queryTarget.innerHTML;
-    console.log('clicked');
+    
+    
 
     var element = document.getElementById("quickSearch2").innerHTML;//$('.quickSearch').val;
-    //Clears input on submit
-    console.log('clicked on'+element);
-    //queryTarget.val("");
+    walmartData = element;
     getDataFromApi(element,displaySearchData);
     getDataFromApiYOUTUBE(element,
     displayYoutubeSearchData);
   });
   $('#quickSearch3').click(event =>
   {
-    // event.preventDefault();
-    // const queryTarget = $(event.currentTarget).find('.quickSearch');
-    // console.log(queryTarget);
-    // const query = queryTarget.innerHTML;
-    console.log('clicked');
+    
+    
 
     var element = document.getElementById("quickSearch3").innerHTML;//$('.quickSearch').val;
-    //Clears input on submit
-    console.log('clicked on'+element);
-    //queryTarget.val("");
+    walmartData = element;
     getDataFromApi(element,displaySearchData);
     getDataFromApiYOUTUBE(element,
     displayYoutubeSearchData);
   });
   $('#quickSearch4').click(event =>
   {
-    // event.preventDefault();
-    // const queryTarget = $(event.currentTarget).find('.quickSearch');
-    // console.log(queryTarget);
-    // const query = queryTarget.innerHTML;
-    console.log('clicked');
+    
+    
 
     var element = document.getElementById("quickSearch4").innerHTML;//$('.quickSearch').val;
-    //Clears input on submit
-    console.log('clicked on'+element);
-    //queryTarget.val("");
+    walmartData = element;
     getDataFromApi(element,displaySearchData);
     getDataFromApiYOUTUBE(element,
     displayYoutubeSearchData);
@@ -192,6 +166,35 @@ function showSections(){
 }
 
 hideSections();
+
+//Click on box to display pop up window, containing more info about the product
+$(function() {
+    $(".clickForPopUp").on("click",".result-block",function() {
+      console.log(this);
+
+      //store item name from HTML element into var
+      var itemName = document.getElementsByClassName("itemNameButton");
+      //store url from HTML element
+      var imageURL = document.querySelector('.thumbnail').src;
+      //$("#popUpWindow").text($(this).val().trim());
+        //place item name into modal's popUpText class
+        $(".popUpText").text($(itemName).val().trim());
+
+        //console.log($("#popUpWindow").text($(this).val().trim()));
+        //insert image URL into modal's copied image placeholder
+        $('.copiedimages').append(displayItemImage(imageURL));
+
+        $("#popUpWindow").show(500);
+    });
+    $("#btnOK").click(function() {
+        //$("#valueFromMyModal").val($("#myform input[type=text]").val().trim());
+        $("#popUpWindow").hide(400);
+    });
+});
+
+function displayItemImage(imageURL){
+  return ` <img src=${imageURL}> `;
+}
 
 $(watchSubmitYOUTUBE);
 $(watchClick);
