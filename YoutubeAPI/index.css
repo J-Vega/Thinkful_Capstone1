@@ -1,0 +1,45 @@
+html{
+  margin: auto;
+}
+h1{
+  text-align: center;
+}
+
+form{
+  text-align: center;
+}
+
+.result-block{
+  display: inline-block;
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: 16px;
+  background-color: #EAEAEA; 
+  border: 4px solid #7B01E6;
+  border-radius: 3px; 
+  max-width: 400px;
+  
+  /*The image is an anchor so text align center will work fine on the image*/
+  text-align: center;
+  text-decoration: none;
+  font-style: normal;
+}
+a{
+  text-decoration: none;
+  font-style: normal;
+}
+
+.thumbnail{
+  margin-top: 10px;
+  width: 60%;
+  width: 300px;
+  height: 170px;
+  border: 4px solid #7B01E6; 
+  border-radius: 3px; 
+}
+
+.videoDescription,.videoTitle{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
