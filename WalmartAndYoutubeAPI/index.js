@@ -9,7 +9,7 @@ let walmartData;
 function getDataFromApi(searchTerm, callback){
   //console.log('searching: ' +searchTerm);
   const query = {
-    apiKey: 'cwd2qzamfg6f523deuwhuxec',
+    apiKey: '',
     query: `${searchTerm}`,
 
     category: 3944, //walmart category for electronics
@@ -62,7 +62,7 @@ function getDataFromApiYOUTUBE(searchTerm, callback){
   //console.log(searchTerm);
   const query = {
     part: 'snippet',
-    key: 'AIzaSyCn1d4mvDhmpTDGTUQewmXwbox46HljqvE',
+    key: '',
     q: `${searchTerm}`   ,
     'maxResults': 6
     
