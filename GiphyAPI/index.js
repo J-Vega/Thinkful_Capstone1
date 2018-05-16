@@ -1,11 +1,11 @@
 const giphy_search_url = 'http://api.giphy.com/v1/gifs/search';
 
 
-//'http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=KR173qKpVYfv9dvzExycLE59pItN6ktM&limit=5';
-//?q=funny+cat&api_key=KR173qKpVYfv9dvzExycLE59pItN6ktM';
+//'http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=&limit=5';
+//?q=funny+cat&api_key=';
 
 //'api.giphy.com/v1/gifs/search';
-//const api_key = '&api_key=KR173qKpVYfv9dvzExycLE59pItN6ktM';
+//const api_key = '&api_key=';
 //const searchTerm = '&q=';
 
 // Search all GIPHY GIFs for a word or phrase. Punctuation will be stripped and ignored. Use a plus or url encode for phrases. Example paul+rudd, ryan+gosling or american+psycho.
@@ -16,7 +16,7 @@ function getDataFromApi(searchTerm, callback){
   //console.log('searching: ' +searchTerm);
   const query = {
     
-    api_key: 'KR173qKpVYfv9dvzExycLE59pItN6ktM',
+    api_key: '',
     q: `${searchTerm}`,
     limit: 5
   };
