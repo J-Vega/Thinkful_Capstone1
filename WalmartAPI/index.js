@@ -2,17 +2,17 @@
 
 //http://api.walmartlabs.com/v1/search?apiKey={apiKey}&lsPublisherId={Your LinkShare Publisher Id}&query=ipod
 
-//category list - https://api.walmartlabs.com/v1/taxonomy?apiKey=cwd2qzamfg6f523deuwhuxec&format=json
+//category list - https://api.walmartlabs.com/v1/taxonomy?apiKey=&format=json
 
 //video games - "categoryId": "2636",
 
 const search_url = 'https://api.walmartlabs.com/v1/search';
 
-//oww1hu2f71dd0rs83ba669i5
+//
 function getDataFromApi(searchTerm, callback){
   //console.log('searching: ' +searchTerm);
   const query = {
-    apiKey: 'cwd2qzamfg6f523deuwhuxec',
+    apiKey: '',
     query: `${searchTerm}`,
     //categoryId: 2636, //Category for video games  ****ELECTRONICS CATEGORY ALSO INCLUDES VIDEO GAMES
     category: 3944,
