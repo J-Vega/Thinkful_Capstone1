@@ -3,7 +3,7 @@ const youtube_search_url = 'https://www.googleapis.com/youtube/v3/search';
 function getDataFromApi(searchTerm, callback){
   const query = {
     part: 'snippet',
-    key: 'AIzaSyCn1d4mvDhmpTDGTUQewmXwbox46HljqvE',
+    key: '',
     q: `${searchTerm} Review`   ,
     'maxResults': 6
     
