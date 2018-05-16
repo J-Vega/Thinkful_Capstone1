@@ -1,9 +1,9 @@
 
-//https://openapi.etsy.com/v2/listings/active?api_key=oww1hu2f71dd0rs83ba669i5&keywords=fall%20giraffe;
+//https://openapi.etsy.com/v2/listings/active?api_key=&keywords=fall%20giraffe;
 
 //This is an example url, used to obtain a picture of a specific listing
 // 543297256 is the listing ID (results.listing_id)
-//https://openapi.etsy.com/v2/listings/543297256/images?api_key=oww1hu2f71dd0rs83ba669i5
+//https://openapi.etsy.com/v2/listings/543297256/images?api_key=
 //results[0].url_170x135
 
 const search_url = 'https://openapi.etsy.com/v2/listings/active';
@@ -11,7 +11,7 @@ const search_url = 'https://openapi.etsy.com/v2/listings/active';
 function getDataFromApi(searchTerm, callback){
   //console.log('searching: ' +searchTerm);
   const query = {
-    api_key: 'oww1hu2f71dd0rs83ba669i5',
+    api_key: '',
     keywords: `${searchTerm}`,
     limit: 5
   };
@@ -44,7 +44,7 @@ function renderResults(results,listingImage){
   console.log(listingImage);
   return `<a href="${results.url}"><p>${results.title}</p></a><p>$${results.price}</p>
   <img src="${listingImage}">`;
-  //<img src="https://openapi.etsy.com/v2/listings/${results.listing_id}/images?api_key=oww1hu2f71dd0rs83ba669i5"
+  //<img src="https://openapi.etsy.com/v2/listings/${results.listing_id}/images?api_key="
   //`;
 }
 
